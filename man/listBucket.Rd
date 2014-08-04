@@ -14,7 +14,7 @@
 \usage{
 listBuckets(withDates = TRUE, auth = getOption("AmazonS3"), host = "http://s3.amazonaws.com")
 listBucket(name, auth = getOption("AmazonS3"), host = "s3.amazonaws.com",
-            curl = getCurlHandle(), asXML = FALSE, virtual = (tolower(name) == name))
+            curl = getCurlHandle(), asXML = FALSE, virtual = (tolower(name) == name), ...)
 getBucketLocation(bucket, auth = getOption("AmazonS3"), curl = getCurlHandle(),
                     virtual = (tolower(bucket) == bucket))
 }
@@ -37,6 +37,7 @@ getBucketLocation(bucket, auth = getOption("AmazonS3"), curl = getCurlHandle(),
     they want the parsed XML document containing the response and not
     to bother converting it to a data frame. This allows the caller to
     extract the information in the way she wants it.}
+  \item{\dots}{query parameters for a request.}
 }
 \details{
 }

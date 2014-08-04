@@ -14,12 +14,17 @@
 
 listS3Files = listBucket = 
 function(name, auth = getOption("AmazonS3"), host = "s3.amazonaws.com",
-           curl = getCurlHandle(), asXML = FALSE, virtual = (tolower(name) == name))
+           curl = getCurlHandle(), asXML = FALSE, virtual = (tolower(name) == name), ...)
 {
   u = if(virtual)
          sprintf("http://%s.s3.amazonaws.com", name)
       else
          sprintf("http://s3.amazonaws.com/%s", name)  
+  qs <- list(...)
+  if (length(qs) > 0) {
+    params <- paste(paste(names(qs),qs,sep='='), collapse='&')
+    u <- sprintf("%s?%s", u, URLencode(params))
+  }
 
   h = c(Date = AWSDate())
   if(virtual)
@@ -38,6 +43,7 @@ function(name, auth = getOption("AmazonS3"), host = "s3.amazonaws.com",
     #  Name, Prefix, Marker, MaxKeys, IsTruncated
   parseContentsInfo(doc)
 }
+
 
 addFile =
   #
@@ -123,7 +129,7 @@ function(contents, bucket, name = basename(contents), access = NA,
               httpheader = header,
               postfields = contents,
               httppost = TRUE, # HTTPPOST
-              verbose = FALSE,
+              verbose = TRUE,
               headerfunction = fun$update, .opts = .opts)
 
     # Parse this header
