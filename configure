@@ -1693,6 +1693,11 @@ if test -z "${PERL}" ; then
   echo "Cannot find the perl executable. Add it to your path or set the environment PERL."
 fi
 
+###
+echo $PERL5LIB
+$PERL '-MDigest::HMAC_SHA1' -e ';'
+###
+
 $PERL '-MDigest::HMAC_SHA1' -e ';'  &> /dev/null
 
 if  test "$?" != "0" ;  then
