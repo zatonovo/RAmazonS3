@@ -129,7 +129,7 @@ function(contents, bucket, name = basename(contents), access = NA,
               httpheader = header,
               postfields = contents,
               httppost = TRUE, # HTTPPOST
-              verbose = TRUE,
+              verbose = FALSE,
               headerfunction = fun$update, .opts = .opts)
 
     # Parse this header

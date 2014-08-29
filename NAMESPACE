@@ -10,7 +10,6 @@ export(listBuckets, # done
        removeBucket, # done                            
        makeBucket,  #done  must use virtual.
        getFile,  # understand content type
-       putFile,
        addFile,  #XXX works but needs extensions for encoding, binary content, reading from files (see ftpupload in RCurl).
        removeFile,  # done
        copyFile,  # done
